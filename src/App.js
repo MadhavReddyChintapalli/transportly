@@ -1,24 +1,29 @@
-import logo from './logo.svg';
-import './App.css';
+//Import Modules
+import { Fragment } from 'react';
+import { BrowserRouter as Router, Route, Switch } from 'react-router-dom';
+
+//Import Components
+import Order from './components/Order';
+import ViewOrderOnFlight from './components/ViewOrderOnFlight';
+import Navbar from './components/layout/Navbar';
+import Home from './components/pages/Home';
 
 function App() {
   return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
-    </div>
+    <Fragment>
+      <Router>
+        <Navbar />
+        <Switch>
+          <Route exact path='/' component={Home} />
+          <Route exact path='/orders' component={Order} />
+          <Route
+            exact
+            path='/vieworders/:flight_number/:arrival_city/:departure_city'
+            component={ViewOrderOnFlight}
+          />
+        </Switch>
+      </Router>
+    </Fragment>
   );
 }
 
